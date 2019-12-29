@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/jquery3.4.js') }}" type="text/javascript"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}" type="text/javascript"></script>
+</head>
+
+<body>
+  <header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active ml-2">
+            <a class="nav-link" href="#">Naive Bayes</a>
+          </li>
+          <li class="nav-item ml-4">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle active btn-language text-light" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Vietnamese
+              </button>
+              <div class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item text-light" href="/vi/svm">SVM</a>
+                <a class="dropdown-item text-light en-naive" href="/vi/naive">NaiveBayes</a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item ml-2">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle active btn-language text-light" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                English
+              </button>
+              <div class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item text-light" href="/en/svm">SVM</a>
+                <a class="dropdown-item text-light" href="/en/naive">NaiveBayes</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form name="document-form" action="/vi/naive" method="POST">
+          <div class="form-group">
+            <label for="document" class="font-weight-bold text-danger">Document</label>
+            <textarea class="content-textarea" style="width: 500px;" class="form-control" name="content" id="document"
+              cols="5" rows="10">{{c}}</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        {% if r != null %}
+        <h1 class="text-danger pt-5">{{ r }}</h1>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+  <footer class="text-center bg-dark text-white fixed-bottom py-1">
+    @copyright TungMonkey 2019
+  </footer>
+</body>
+</html>
